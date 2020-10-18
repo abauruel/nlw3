@@ -1,12 +1,11 @@
 import {Request, Response} from 'express'
-import Orphanage from '../model/Orphanage'
+import Orphanage from '../models/Orphanage'
 import {getRepository} from 'typeorm'
 import orphanageView from '../views/OrphanageView'
 import * as Yup from 'yup'
 
 export default {
     async create(request: Request, response: Response){
-        
         const {
             name,
             latitude,
@@ -15,7 +14,7 @@ export default {
             instructions,
             opening_hours,
             open_on_weekends } = request.body
-    
+  
         const orphanagesRepository = getRepository(Orphanage)
         const requestImages =request.files as Express.Multer.File[]
         const images = requestImages.map(image=> {
@@ -28,7 +27,7 @@ export default {
             about,
             instructions,
             opening_hours,
-            open_on_weekends,
+            open_on_weekends: open_on_weekends=='true',
             images
         }
         const schema = Yup.object().shape({

@@ -1,4 +1,4 @@
-import Orphanage from '../model/Orphanage'
+import Orphanage from '../models/Orphanage'
 import ImageView from './ImagesView'
 export default {
     render(orphanage: Orphanage){
